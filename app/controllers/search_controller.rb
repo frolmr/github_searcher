@@ -5,8 +5,14 @@ class SearchController < Sinatra::Base
     set :views, 'app/views'
   end
 
+  get '/search/:subject' do
+    @subject = params[:subject]
+    erb :search, locals: { search_subject: @subject }
+  end
+
   post '/search' do
-    @items = [1, 2, 3]
-    erb :index, locals: { item: @items }
+    @items = params[:keywords].split(' ')
+    @subject = params[:search_subject]
+    erb :search, locals: { items: @items, search_subject: @subject }
   end
 end

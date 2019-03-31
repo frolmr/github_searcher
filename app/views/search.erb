@@ -1,8 +1,10 @@
+<h2>Search for <%= search_subject %> on GitHub</h2>
 <form action="/search" method="post" role="form">
   <div class="form-group">
     <label for="keywords">Search keywords:</label>
-    <input type="text" class="form-control" id="keywords" aria-describedby="keywords_help">
+    <input type="text" class="form-control" id="keywords" aria-describedby="keywords_help" name="keywords">
     <small id="keywords_help" class="form-text text-muted">Enter keywords separated by space</small>
+    <input id="search_subject" name="search_subject" type="hidden" value="<%= search_subject %>">
   </div>
   <button type="submit" class="btn btn-primary">Search</button>
 </form>
@@ -10,7 +12,7 @@
 <br/>
 
 <% if @items %>
-  <h2>Search results:</h2>
+  <h2>Search for <%= search_subject %> results:</h2>
   <% @items.each do |item| %>
     <p><%= item %><p>
   <% end %>
