@@ -1,0 +1,17 @@
+<form action="/search" method="post" role="form">
+  <div class="form-group">
+    <label for="keywords">Search keywords:</label>
+    <input type="text" class="form-control" id="keywords" aria-describedby="keywords_help">
+    <small id="keywords_help" class="form-text text-muted">Enter keywords separated by space</small>
+  </div>
+  <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+<br/>
+
+<% if @items %>
+  <h2>Search results:</h2>
+  <% @items.each do |item| %>
+    <p><%= item %><p>
+  <% end %>
+<% end %>

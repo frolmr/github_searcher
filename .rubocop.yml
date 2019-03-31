@@ -1,0 +1,9 @@
+AllCops:
+  TargetRubyVersion: 2.6.2
+  Exclude:
+    - spec/**/*
+    - Gemfile
+
+Style/Documentation:
+  Enabled: false
+
