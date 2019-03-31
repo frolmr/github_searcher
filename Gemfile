@@ -2,6 +2,7 @@
 source 'https://rubygems.org'
 
 gem 'sinatra', '~> 2.0', '>= 2.0.5'
+gem 'dry-validation', '~> 0.13.1'
 
 group :development do
   gem 'pry', '~> 0.12.2'
