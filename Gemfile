@@ -1,5 +1,6 @@
 # Gemfile
 source 'https://rubygems.org'
+ruby '2.6.2'
 
 gem 'sinatra', '~> 2.0', '>= 2.0.5'
 gem 'dry-validation', '~> 0.13.1'
