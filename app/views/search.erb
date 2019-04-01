@@ -1,0 +1,56 @@
+<h2>Search for <%= @search_subject %> on GitHub</h2>
+<form action="/search/<%= @search_subject %>" role="form">
+  <div class="form-group">
+    <label for="keywords">Search keywords:</label>
+    <input type="text" class="form-control" id="keywords" aria-describedby="keywords_help" name="keywords">
+    <small id="keywords_help" class="form-text text-muted">Enter keywords separated by space</small>
+  </div>
+  <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+<br/>
+
+<% if @errors %>
+  <h2>Error happend: <%= errors %></h3>
+<% end %>
+
+<% if @entities && @entities.size > 0 %>
+  <h2>Search for <%= search_subject %> results:</h2>
+  <% @entities.each do |e| %>
+    <ul class="list-group">
+      <li class="list-group-item">
+        <a href="<%= e['html_url'] %>"><%= e['html_url']%></a>
+      </li>
+    </ul>
+  <% end %>
+
+  <br/>
+
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <% if @first %>
+        <li class="page-item">
+          <a class="page-link" href="/search/<%= search_subject %>?keywords=<%= keywords %>&page=<%= @first %>">First</a>
+        </li>
+      <% end %>
+
+      <% if @prev %>
+        <li class="page-item">
+          <a class="page-link" href="/search/<%= search_subject %>?keywords=<%= keywords %>&page=<%= @prev %>">Previous</a>
+        </li>
+      <% end %>
+      
+      <% if @next %>
+        <li class="page-item">
+          <a class="page-link" href="/search/<%= search_subject %>?keywords=<%= keywords %>&page=<%= @next %>">Next</a>
+        </li>
+      <% end %>
+
+      <% if @last %>
+        <li class="page-item">
+          <a class="page-link" href="/search/<%= search_subject %>?keywords=<%= keywords %>&page=<%= @last %>">Last</a>
+        </li>
+      <% end %>
+    </ul>
+  </nav>
+<% end %>

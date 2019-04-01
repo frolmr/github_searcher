@@ -2,6 +2,7 @@
 source 'https://rubygems.org'
 
 gem 'sinatra', '~> 2.0', '>= 2.0.5'
+gem 'dry-validation', '~> 0.13.1'
 
 group :development do
   gem 'pry', '~> 0.12.2'
@@ -11,4 +12,5 @@ end
 group :development, :test do
   gem 'rspec', '~> 3.8'
   gem 'rubocop', '~> 0.66.0'
+  gem 'webmock', '~> 3.5', '>= 3.5.1'
 end
