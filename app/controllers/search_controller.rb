@@ -7,14 +7,22 @@ class SearchController < Sinatra::Base
     set :views, 'app/views'
   end
 
-  get '/search/:subject' do
-    @subject = params[:subject]
-    erb :search, locals: { search_subject: @subject }
-  end
+  get '/search/:search_subject' do
+    @search_subject = params[:search_subject]
+    @keywords = params[:keywords]
 
-  post '/search' do
-    @items = GithubSearcher.call(params)
-    @subject = params[:search_subject]
-    erb :search, locals: { items: @items, search_subject: @subject }
+    if @keywords
+      result = GithubSearcher.call(params)
+      @entities = result.items
+      @next  = result[:next]
+      @prev  = result[:prev]
+      @last  = result[:last]
+      @first = result[:first]
+    end
+
+    erb :search, locals: { search_subject: @search_subject, keywords: @keywords }
+
+  rescue GithubSearcherError, GithubRequesterError, GithubResponseDecoratorError => e
+    erb :search, locals: { errors: e }
   end
 end
